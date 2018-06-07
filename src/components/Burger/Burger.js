@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'; //allows for props.match object to be available even when not component is not called from a Route JSX object
 
 import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredients/BurgerIngredients';
@@ -30,4 +31,4 @@ const burger = (props) => {
     );
 }
 
-export default burger;
+export default withRouter(burger);
