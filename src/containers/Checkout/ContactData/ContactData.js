@@ -102,6 +102,21 @@ class ContactData extends Component {
         
     }
 
+    inputChangedHandler = (event, inputIdentifier) => {
+        const updatedOrderForm = {
+            ...this.state.orderForm
+        }; //copy of first layer object (name, street, etc)
+        
+        const updatedFormElement = {
+            ...updatedOrderForm[inputIdentifier]
+        }; //copy of the second layer object (elementType, elementConfig, value)
+    
+        updatedFormElement.value = event.target.value;
+        updatedOrderForm[inputIdentifier] = updatedFormElement;
+        
+        this.setState({ orderForm: updatedOrderForm });
+    } 
+
     render() {
         const formElementsArray = [];
 
@@ -119,7 +134,8 @@ class ContactData extends Component {
                     elementType={formElement.config.elementType}
                     elementConfig={formElement.config.elementConfig} 
                     value={formElement.config.value}
-                    key={formElement.id}/>
+                    key={formElement.id}
+                    changed={(event) => this.inputChangedHandler(event, formElement.id)}/>
                 ))}
                 <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
             </form>
