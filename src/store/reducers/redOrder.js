@@ -3,26 +3,34 @@ import * as actionTypes from '../actions/actTypes';
 
 const initialState = {
     orders: [],
-    loading: false
+    loading: false,
+    purchased: false
 }
 
 const redOrder = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.PURCHASE_INIT:
+            return {
+                ...state,
+                purchased: false
+            }
+
         case actionTypes.PURCHASE_BURGER_START:
             return {
                 ...state,
                 loading: true
             }
-            
+
         case actionTypes.PURCHASE_BURGER_SUCCESS:
             const newOrder = {
-                ...bindActionCreators.orderData,
-                id: action.orderId
+                ...state,
+                id: action.orderId,
             }
 
             return {
                 ...state,
                 loading: false,
+                purchased: true,
                 orders: state.orders.concat(newOrder)
             };
 

@@ -6,5 +6,6 @@ export {
 
 export {
     purchaseBurgerStart,
-    purchaseBurger
+    purchaseBurger,
+    purchaseInit
 } from './actOrder';
