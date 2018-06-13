@@ -12,5 +12,6 @@ export {
 } from './actOrder';
 
 export {
-    auth
+    auth,
+    logout
 } from './actAuth'
