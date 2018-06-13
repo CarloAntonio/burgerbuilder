@@ -1,5 +1,6 @@
 
 import * as actionTypes from '../actions/actTypes';
+import { updateObject } from './utility';
 
 const initialState = {
     ingredients: null,
@@ -20,14 +21,18 @@ const reducer = (state = initialState, action) => {
 
     switch(action.type) {
         case actionTypes.ADD_INGREDIENT:
-            return {
-                ...state, //copy layer 1 of object
-                ingredients: {
-                    ...state.ingredients, //copy layer 2 of object
-                    [action.ingredientName]: state.ingredients[action.ingredientName] + 1 //ES6
-                },
+            
+            //updated using a utitilty function
+            const updatedIngredient = {
+                [action.ingredientName]: state.ingredients[action.ingredientName] + 1 //ES6
+            }
+            const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
+            const updatedState = {
+                ingredients: updatedIngredients,
                 totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
-            };
+            }
+
+            return updateObject(state, updatedState);
 
         case actionTypes.REMOVE_INGREDIENT:
             return {
@@ -53,10 +58,8 @@ const reducer = (state = initialState, action) => {
             };
 
         case actionTypes.FETCH_INGREDIENTS_FAILED:
-            return {
-                ...state,
-                error: true
-            };
+            //updated using a utitilty function
+            return updateObject(state, {error: true});
 
         default: 
             return state;

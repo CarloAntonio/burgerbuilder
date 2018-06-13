@@ -1,5 +1,6 @@
 
 import * as actionTypes from '../actions/actTypes';
+import { updateObject } from './utility';
 
 const initialState = {
     orders: [],
@@ -8,18 +9,15 @@ const initialState = {
 }
 
 const redOrder = (state = initialState, action) => {
+
     switch (action.type) {
         case actionTypes.PURCHASE_INIT:
-            return {
-                ...state,
-                purchased: false
-            }
+            //uses utility fn
+            return updateObject(state, { purchased: false });
 
         case actionTypes.PURCHASE_BURGER_START:
-            return {
-                ...state,
-                loading: true
-            }
+            //uses utility fn
+            return updateObject(state, { loading: true });
 
         case actionTypes.PURCHASE_BURGER_SUCCESS:
             const newOrder = {
@@ -35,29 +33,23 @@ const redOrder = (state = initialState, action) => {
             };
 
         case actionTypes.PURCHASE_BURGER_FAIL:
-            return {
-                ...state,
-                loading: false
-            };
+            //uses utility fn
+            return updateObject(state, { loading: false });
 
         case actionTypes.FETCH_ORDERS_START:
-            return {
-                ...state,
-                loading: true
-            }
+            //uses utility fn
+            return updateObject(state, { loading: true });
 
         case actionTypes.FETCH_ORDERS_SUCCESS:
-            return {
-                ...state,
+            //uses utility fn
+            return updateObject(state, { 
                 orders: action.orders,
-                loading: false
-            }
+                loading: false 
+            });
 
         case actionTypes.FETCH_ORDERS_FAIL:
-            return {
-                ...state,
-                loading: false
-            }
+            //uses utility fn
+            return updateObject(state, { loading: false });
 
         default:
             return state
