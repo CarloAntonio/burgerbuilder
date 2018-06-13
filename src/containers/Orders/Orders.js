@@ -11,7 +11,7 @@ class Orders extends Component {
 
     //fetch data only when component has loaded on the page
     componentDidMount() {
-        this.props.onFetchOrders();
+        this.props.onFetchOrders(this.props.token);
     }
 
     render() {
@@ -33,13 +33,14 @@ class Orders extends Component {
 const mapStateToProps = state => {
     return {
         orders: state.redOrder.orders,
-        loading: state.redOrder.loading
+        loading: state.redOrder.loading,
+        token: state.redAuth.token
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchOrders: () => dispatch(actions.fetchOrders())
+        onFetchOrders: (token) => dispatch(actions.fetchOrders(token))
     }
 }
 
