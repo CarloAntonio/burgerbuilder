@@ -10,13 +10,15 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import burgerBuilderReducer from './store/reducers/redBurgerBuilder';
 import orderReducer from './store/reducers/redOrder';
+import authReducer from './store/reducers/redAuth';
 
 //add thunk and have it work with redux dev tools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     redBurgerBuilder: burgerBuilderReducer,
-    redOrder: orderReducer
+    redOrder: orderReducer,
+    redAuth: authReducer
 })
 
 const store = createStore(

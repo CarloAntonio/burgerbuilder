@@ -60,7 +60,7 @@ const fetchIngredientsFailed = (state, action) => {
     return updateObject(state, {error: true});
 }
 
-const reducer = (state = initialState, action) => {
+const redBurgerBuilder = (state = initialState, action) => {
 
     switch(action.type) {
         case actionTypes.ADD_INGREDIENT: return addIngredient(state, action);  
@@ -72,4 +72,4 @@ const reducer = (state = initialState, action) => {
     
 };
 
-export default reducer;
+export default redBurgerBuilder;
