@@ -13,7 +13,11 @@ import orderReducer from './store/reducers/redOrder';
 import authReducer from './store/reducers/redAuth';
 
 //add thunk and have it work with redux dev tools
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+//add turnary expressiong for showing redux dev tools only in development mode
+const composeEnhancers = 
+    process.env.NODE_ENV === 'development' 
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ 
+    : null || compose;
 
 const rootReducer = combineReducers({
     redBurgerBuilder: burgerBuilderReducer,
